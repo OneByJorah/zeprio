@@ -1,7 +1,6 @@
 .git
 .github
 .agents
-docs
 scripts
 node_modules
 *.md

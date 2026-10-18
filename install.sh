@@ -3,7 +3,7 @@ set -euo pipefail
 
 cd "$(dirname "$0")"
 
-echo "=== Installing PrimeHub ==="
+echo "=== Installing zeprio ==="
 
 if ! command -v docker &> /dev/null; then
     echo "Docker is required but not installed. Please install Docker first."
@@ -25,11 +25,11 @@ if [ ! -f .env ]; then
     fi
 fi
 
-echo "Building and starting PrimeHub on port 8080..."
+echo "Building and starting zeprio on port 8080..."
 if docker compose version &> /dev/null; then
     docker compose up --build -d
 else
     docker-compose up --build -d
 fi
 
-echo "PrimeHub installed. Access: http://localhost:8080"
+echo "zeprio installed. Access: http://localhost:8080"
