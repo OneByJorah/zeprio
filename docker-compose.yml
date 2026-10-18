@@ -1,24 +1,28 @@
 # ─────────────────────────────────────────────────────────────
-# PrimeHub — Organization Profile & Operations Hub
+# zeprio — Organization Profile & Operations Hub
 # Static landing page served via nginx
 # ─────────────────────────────────────────────────────────────
 # Usage:
 #   docker compose up -d
-#   # Open http://localhost:${PORT:-8080}
+#   # Open http://127.0.0.1:${PORT:-8080}
 # ─────────────────────────────────────────────────────────────
 
 services:
-  primehub:
+  zeprio:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: primehub
-    image: primehub/primehub:latest
+    container_name: zeprio
+    image: ghcr.io/onebyjorah/zeprio:latest
     ports:
-      - "${PORT:-8080}:80"
+      - "127.0.0.1:${PORT:-8080}:8080"
     restart: unless-stopped
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     healthcheck:
-      test: ["CMD", "wget", "--spider", "-q", "http://localhost:80/"]
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/"]
       interval: 30s
       timeout: 5s
       retries: 3
