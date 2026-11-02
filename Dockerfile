@@ -1,7 +1,7 @@
 FROM nginx:alpine@sha256:892bb2152464f0c5d8972593a5f5afaf8054552580b699d95f8ff4af08c2d33d
 
-# Patch the one HIGH vulnerability present in the pinned base image
-RUN apk add --no-cache libexpat=2.9.0-r0
+# Apply Alpine's security fixes on top of the pinned base image
+RUN apk upgrade --no-cache
 
 # Generate a minimal nginx config for the unprivileged nginx user on port 8080
 RUN { \
